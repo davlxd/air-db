@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170221071532) do
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "wechat_openid"
     t.string   "phone"
-    t.string   "air_auth_token"
+    t.string   "air_auth_token", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
