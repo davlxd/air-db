@@ -7,6 +7,8 @@ class CreateFriendships < ActiveRecord::Migration[5.0]
       t.foreign_key :users, column: :acceptor_id
       t.string :status
 
+      t.index [:requester_id, :acceptor_id], unique: true
+
       t.timestamps
     end
   end

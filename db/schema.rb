@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170225090139) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["acceptor_id"], name: "index_friendships_on_acceptor_id", using: :btree
+    t.index ["requester_id", "acceptor_id"], name: "index_friendships_on_requester_id_and_acceptor_id", unique: true, using: :btree
     t.index ["requester_id"], name: "index_friendships_on_requester_id", using: :btree
   end
 
@@ -38,10 +39,11 @@ ActiveRecord::Schema.define(version: 20170225090139) do
     t.string   "wechat_openid"
     t.json     "wechat_userinfo"
     t.string   "phone"
-    t.string   "air_auth_token",  null: false
+    t.string   "air_auth_token",               null: false
+    t.string   "friends",         default: [],              array: true
     t.string   "status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["air_auth_token"], name: "index_users_on_air_auth_token", unique: true, using: :btree
     t.index ["phone"], name: "index_users_on_phone", using: :btree
     t.index ["wechat_openid"], name: "index_users_on_wechat_openid", unique: true, using: :btree
