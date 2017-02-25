@@ -7,6 +7,10 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :air_auth_token, null: false
       t.string :status
 
+      t.index :wechat_openid, unique: true
+      t.index :air_auth_token, unique: true
+      t.index :phone
+
       t.timestamps
     end
   end

@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20170222060800) do
     t.string   "status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["air_auth_token"], name: "index_users_on_air_auth_token", unique: true, using: :btree
+    t.index ["phone"], name: "index_users_on_phone", using: :btree
+    t.index ["wechat_openid"], name: "index_users_on_wechat_openid", unique: true, using: :btree
   end
 
 end
