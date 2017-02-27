@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20170227133741) do
 
   create_table "conversations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "dual_id"
+    t.uuid     "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["dual_id"], name: "index_conversations_on_dual_id", unique: true, using: :btree
   end
 
   create_table "friendships", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170227133741) do
 
   add_foreign_key "conversation_memberships", "conversations"
   add_foreign_key "conversation_memberships", "users"
+  add_foreign_key "conversations", "users", column: "owner_id"
   add_foreign_key "friendships", "users", column: "acceptor_id"
   add_foreign_key "friendships", "users", column: "requester_id"
 end
